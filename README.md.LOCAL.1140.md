@@ -5,5 +5,5 @@ This extension retrieves the most recent historical copy from the Internet Archi
 Authors
 ####
 
-- duoi - 
 - `M` -
+
