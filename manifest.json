@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Search in the Internet Archive",
+  "description": "This extension retrieves the most recent historical copy from the Internet Archive's Wayback machine",
+  "version": "0.1",
+
+  "permissions": [
+    "contextMenus",
+  ],
+
+  "background": {
+
+  "scripts": ["script.js"]
+  },
+}
