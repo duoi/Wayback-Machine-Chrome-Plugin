@@ -1,19 +1,29 @@
-chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-    var currentUrl = tabs[0].url;
-});
+function onClickHandler(info, tab) {
+    chrome.tabs.query({
+        'active': true,
+        'lastFocusedWindow': true
+    }, function(tabs) {
+        var currentUrl = tabs[0].url;
+        getArchive(currentUrl, tab);
+    })
+};
 
-function getArchive(currentUrl,tab) {
+function getArchive(currentUrl, tab) {
 
     console.log("Page " + currentUrl + " was selected.");
-    chrome.tabs.create({ 
+    chrome.tabs.create({
 
-        url: "http://web.archive.org/web/" + currentUrl,
+        url: "http://web.archive.org/web/" + currentUrl
     })
 }
 
-chrome.contextMenus.create({
+chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-    title: "Search: %s", 
-    contexts:["selection"], 
-    onclick: getArchive,
-});
+chrome.runtime.onInstalled.addListener(function() {
+            var context = "all";
+            var title = "Wayback Machine";
+            var id = chrome.contextMenus.create({
+                title: title,
+                contexts: [context],
+                id: "context" + context
+            });});
